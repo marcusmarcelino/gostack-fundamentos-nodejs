@@ -1,4 +1,3 @@
-import { response } from 'express';
 import Transaction from '../models/Transaction';
 
 interface Balance {
@@ -13,6 +12,11 @@ interface CreateTransactionDTO {
   type: 'income' | 'outcome';
 }
 
+interface TransactionsWithCalculatedBalance {
+  transactions: Transaction[];
+  balance: Balance;
+}
+
 class TransactionsRepository {
   private transactions: Transaction[];
 
@@ -20,7 +24,7 @@ class TransactionsRepository {
     this.transactions = [];
   }
 
-  public allTransactionsWithCalculatedBalance() {
+  public allTransactionsWithCalculatedBalance(): TransactionsWithCalculatedBalance {
     const transactionsObject = {
       transactions: this.transactions,
       balance: this.getBalance(),
