@@ -29,6 +29,7 @@ class TransactionsRepository {
       transactions: this.transactions,
       balance: this.getBalance(),
     };
+
     return transactionsObject;
   }
 
